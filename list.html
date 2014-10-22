@@ -1,0 +1,232 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/list.css">
+<style type="text/css">
+	
+</style>
+</head>
+<body>
+	<div id="header" class="f-cb">
+		<div class="logo">
+			logo
+		</div>
+		<div class="login">
+			<span>注册</span>|<span>登录</span><span class="helper">帮助助手</span>
+		</div>
+		<div class="search">
+			<input type="text" />搜索
+		</div>
+	</div>
+	<div id="container">
+		<div id="nav"></div>
+		<ul id="sort" class="f-cb f-bd">
+			<li>排序：</li>
+				<li><input type="button" value="默认排序" class="btn sort-btn" data-stype="default"></li>
+				<li><input type="button" value="最新发布" class="btn sort-btn" data-stype="new"></li>
+				<li><input type="button" value="使用最多" class="btn sort-btn" data-stype="more"></li>
+				<li><input type="button" value="我的收藏" class="btn sort-btn" data-stype="store"></li>
+		</ul>
+		<div id="grid"></div>
+		<div id="page">
+			<div class="wraper f-cb">
+				<ul class="items">
+					<li class="item prev prev-disabled">
+						<span class="num">
+							上一页
+						</span>
+					</li>
+					<li class="item active"><span class="num">1</span></li>
+					<li class="item"><span class="num">2</span></li>
+					<li class="item"><span class="num">3</span></li>
+					<li class="item"><span class="num">4</span></li>
+					<li class="item"><span class="num">5</span></li>
+					<li class="item dot">...</li>
+					<li class="item next">
+						<span class="num">
+							下一页
+						</span>
+					</li>
+				</ul>
+				<div class="total">
+					共 100 页
+				</div>
+				<div class="form">
+					<span class="text">去第</span>
+					<input class="input" type="number" value="1" min="1" max="100">
+					<span class="text">页</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		<span>关于我们|联系我们</span>
+		<em>Copyright © 2014 Allyes. All Rights Reserved.</em>
+	</div>
+	<script id="tplGridItem" type="text/x-handlebars-template">
+		<ul class="f-f-s">
+			{{#each grids}}
+			<li>
+				<dl class="gd-item  f-cb">
+					<dd class="gd-item-info f-bd">
+						<span class="pic-middle"><img width="{{this.w}}" height="{{this.h}}" src="{{this.src}}"></span>
+						<div class="gd-item-hidden">
+							<a href="javascript:void(0);" class="r-btn gd-item-collect"><span>收藏</span></a>
+							<dl class="gd-item-withinfo">
+								<dd>创意名称:{{this.name}}</dd>
+								<dd>尺寸:{{this.size}}</dd>
+								<dd>使用:{{this.usenum}}次</dd>
+							</dl>
+						</div>
+					</dd>
+					<dd class="gd-item-btn">
+						<span class="gd-icon-preview" data-id="{{this.id}}">预览</span>
+						<a class="gd-make-ad a-btn" href="javascript:void(0);" data-id="{{this.id}}">
+							<span>制作广告</span>
+						</a>
+					</dd>
+				</dl>
+			</li>
+			{{/each}}
+		</ul>
+	</script>
+	<script id="tplNavCategory" type="text/x-handlebars-template">  
+		<div class="nav-category f-cb f-bd">
+			<div class="nav-key">{{name}}：</div>
+			<div class="nav-unlimited">
+				<input type="button" value="不限" class="btn unlimited-btn">
+			</div>
+			{{#if ismore}}
+			<a href="javascript:void(0);" class="nav-more">更多</a>
+			<a href="javascript:void(0);" class="nav-cancel">取消</a>
+			{{/if}}
+			<div class="nav-values {{ismulti}} {{ismore}}">
+				<ul class="nav-values-list f-cb">
+					{{#each values}}
+					<li>
+						<a href="javascript:void(0);" class="nav-val" data-val="{{this.id}}">
+							<span class="nav-check">
+								<input type="checkbox" value="{{this.id}}" id="ck_{{this.id}}"/>
+							</span>
+							<span for="ck_{{this.id}}">{{this.name}}</span>
+						</a>
+					</li>
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+	</script> 
+	<script src="js/plugin/jquery-1.9.1.min.js"></script>
+	<script src="js/plugin/handlebars.min.js"></script>
+	<script src="js/jq.fn.extend.js"></script>
+	<script type="text/javascript">
+		var data = {
+			navs: [
+				{
+					name: "尺寸",
+					type: "size",
+					ismore: "more",
+					ismulti: "multi",
+					values:[
+						{id:"320*1901",name:"320*1901"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"},{id:"320*190",name:"320*190"}
+					]
+				},
+				{
+					name: "行业",
+					type: "industry",
+					ismulti: "single",
+					values:[
+						{id:"1",name:"机械设备"},{id:"",name:"医疗健康"},{id:"",name:"电子电工"},{id:"",name:"教育培训"},{id:"",name:"化工材料"},{id:"",name:"建筑装修"},{id:"",name:"广告包装"},{id:"",name:"生活服务"},{id:"",name:"办公文教"},{id:"",name:"机械设备"},{id:"",name:"医疗健康"},{id:"",name:"电子电工"},{id:"",name:"教育培训"},{id:"",name:"化工材料"},{id:"",name:"建筑装修"},{id:"",name:"广告包装"},{id:"",name:"生活服务"},{id:"",name:"办公文教"}
+					]
+				},
+				{
+					name: "类型",
+					type: "type",
+					ismulti: "single",
+					values:[
+						{id:"1",name:"多标签展示"},{id:"2",name:"商品展示"},{id:"3",name:"打折促销"},{id:"4",name:"品牌展示"},{id:"5",name:"节日假日"},{id:"6",name:"活动宣传"}
+					]
+				}
+			],
+			grids:[
+				{
+					id:"1",
+					name:"张三",
+					size:"200*300",
+					usenum:"2300",
+					w:200,
+					h:200,
+					src:"http://nanijser.github.io/img/author.jpg"
+				},{
+					id:"1",
+					name:"李四",
+					size:"200*300",
+					usenum:"300",
+					w:200,
+					h:100,
+					src:"http://nanijser.github.io/img/author.jpg"
+				},{
+					id:"1",
+					name:"李四",
+					size:"200*300",
+					usenum:"300",
+					w:100,
+					h:100,
+					src:"http://nanijser.github.io/img/author.jpg"
+				},{
+					id:"1",
+					name:"李四",
+					size:"200*300",
+					usenum:"300",
+					w:200,
+					h:100,
+					src:"http://nanijser.github.io/img/author.jpg"
+				},{
+					id:"1",
+					name:"李四",
+					size:"200*300",
+					usenum:"300",
+					w:100,
+					h:100,
+					src:"http://nanijser.github.io/img/author.jpg"
+				},{
+					id:"1",
+					name:"李四",
+					size:"200*300",
+					usenum:"300",
+					w:200,
+					h:100,
+					src:"http://nanijser.github.io/img/author.jpg"
+				},{
+					id:"1",
+					name:"李四",
+					size:"200*300",
+					usenum:"300",
+					w:100,
+					h:100,
+					src:"http://nanijser.github.io/img/author.jpg"
+				}
+			]
+		};
+
+		$(function(){
+			$("#nav").nav({
+				navs:data["navs"],
+				tplid:"tplNavCategory",
+				initialNum: 10 
+			},function(selects){
+				console.log(selects);
+			});
+			$("#grid").grid({
+				grids:data["grids"],
+				tpl:$("#tplGridItem").html()
+			},function(selects){
+				console.log(selects);
+			});
+		});
+	</script>
+</body>
+</html>
